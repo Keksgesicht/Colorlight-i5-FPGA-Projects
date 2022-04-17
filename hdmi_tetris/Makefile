@@ -1,7 +1,7 @@
 YOSYS=yosys
 NEXTPNR=nextpnr-ecp5
 ECPPACK=ecppack
-HDMICODE=llhdmi.v vgatestsrc.v
+HDMICODE=llhdmi.v pixel_generator.v tetris.v
 ENCODER=TMDS_encoder.v
 
 .PHONY: all

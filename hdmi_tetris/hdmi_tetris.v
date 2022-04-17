@@ -39,8 +39,8 @@ module hdmi_tetris (
     .o_rd(o_rd), .o_newline(o_newline), .o_newframe(o_newframe),
     .o_red(o_red), .o_grn(o_grn), .o_blu(o_blu));
 
-  vgatestsrc #(.BITS_PER_COLOR(8))
-    vgatestsrc_instance(
+  pixel_generator #(.BITS_PER_COLOR(8))
+    pixel_generator_instance(
       .i_pixclk(clk_25MHz), .i_reset(reset),
       .i_width(640), .i_height(480),
       .i_rd(o_rd), .i_newline(o_newline), .i_newframe(o_newframe),
