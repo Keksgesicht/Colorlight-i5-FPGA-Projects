@@ -1,7 +1,6 @@
 YOSYS=yosys
 NEXTPNR=nextpnr-ecp5
 ECPPACK=ecppack
-HDMICODE=DVI_3x3.v
 HDMICODE=llhdmi.v vgatestsrc.v
 ENCODER=TMDS_encoder.v
 
