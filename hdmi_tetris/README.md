@@ -1,4 +1,4 @@
-# ULX3S HDMI Test Patterm Generator
+# HDMI Tetris
 
 I've taken the idea of a low-level video generator from Dan Gisselquist's
 [llvga.v](https://github.com/ZipCPU/vgasim/blob/master/rtl/llvga.v) module
@@ -10,16 +10,9 @@ I have also taken Dan Gisselquist's
 test pattern generator, and built a ULX3S project that displays the test
 pattern on the HDMI output.
 
-To do this, ```make -f UMakefile```.
+Project structure inspired by
+[hdmi_test_pattern](https://github.com/wuxx/Colorlight-FPGA-Projects/tree/master/src/i5/hdmi_test_pattern)
 
-There is also a make with Verilator, ```make -f Makefile```. This uses the
-test pattern generator and produces the image file ```image.ppm```.
+Play Tetris on the HDMI output of the Colorlight i5 Development Board.
 
-The _dec_6_2018.jpg_ image is a photo of the first output from the project.
-On Dec 10, 2018, I updated the _vgatestsrc.v_ from ZipCPU, added a reset
-line and re-imported _TMDS_encoder.v_. This time, I decorated the file
-with some ```/* verilator lint_off UNOPTFLAT */``` lines because the
-code that sets ```q_m``` really isn't right. I've fixed this by creating
-separate wires and bundling them together afterwards. The _dec_10_2018.jpg_
-image shows the current HDMI output from the project.
-
+Gerenate the bitstream with: ```make```.

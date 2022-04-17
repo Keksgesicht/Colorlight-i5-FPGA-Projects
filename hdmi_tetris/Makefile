@@ -5,27 +5,24 @@ HDMICODE=llhdmi.v vgatestsrc.v
 ENCODER=TMDS_encoder.v
 
 .PHONY: all
-all: ulx3s_25f_ULX3S_25F.bit
+all: hdmi_tetris.bit
 
-ULX3S_25F.ys: ULX3S_25F.v $(HDMICODE) $(ENCODER) clock.v OBUFDS.v
+hdmi_tetris.ys: hdmi_tetris.v $(HDMICODE) $(ENCODER) clock.v OBUFDS.v
 	chmod +x ysgen.sh
-	./ysgen.sh ULX3S_25F.v  $(HDMICODE) $(ENCODER) clock.v \
-		OBUFDS.v  > ULX3S_25F.ys
-	echo "hierarchy -top ULX3S_25F" >> ULX3S_25F.ys
-	echo "synth_ecp5 -json ULX3S_25F.json" >> ULX3S_25F.ys
+	./ysgen.sh hdmi_tetris.v  $(HDMICODE) $(ENCODER) clock.v OBUFDS.v > hdmi_tetris.ys
+	echo "hierarchy -top hdmi_tetris" >> hdmi_tetris.ys
+	echo "synth_ecp5 -json hdmi_tetris.json" >> hdmi_tetris.ys
 
-ULX3S_25F.json: ULX3S_25F.ys
-	$(YOSYS) -q ULX3S_25F.ys
+hdmi_tetris.json: hdmi_tetris.ys
+	$(YOSYS) -q hdmi_tetris.ys
 
-ulx3s_25f_ULX3S_25F.config: ULX3S_25F.json
-	$(NEXTPNR) --25k --package CABGA381 --json ULX3S_25F.json --lpf ulx3s_v20_segpdi.lpf \
-	--textcfg ulx3s_25f_ULX3S_25F.config
+hdmi_tetris.config: hdmi_tetris.json
+	$(NEXTPNR) --25k --package CABGA381 --lpf ulx3s_v20_segpdi.lpf \
+	           --textcfg hdmi_tetris.config --json hdmi_tetris.json
 
-ulx3s_25f_ULX3S_25F.bit: ulx3s_25f_ULX3S_25F.config
-	$(ECPPACK) --input ulx3s_25f_ULX3S_25F.config \
-		--bit ulx3s_25f_ULX3S_25F.bit
+hdmi_tetris.bit: hdmi_tetris.config
+	$(ECPPACK) --input hdmi_tetris.config --bit hdmi_tetris.bit
         
 .PHONY: clean
 clean:
-	rm -f ULX3S_25F.ys ULX3S_25F.json ulx3s_25f_ULX3S_25F.config \
-		ulx3s_25f_ULX3S_25F.bit
+	rm -f hdmi_tetris.ys hdmi_tetris.json hdmi_tetris.config hdmi_tetris.bit

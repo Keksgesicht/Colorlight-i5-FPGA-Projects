@@ -1,6 +1,6 @@
 `default_nettype none
 
-module ULX3S_25F (
+module hdmi_tetris (
 	input clk_25mhz,
         output [3:0] gpdi_dp, gpdi_dn,
 	output wifi_gpio0);
